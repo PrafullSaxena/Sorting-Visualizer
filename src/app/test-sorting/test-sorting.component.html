@@ -1,0 +1,171 @@
+<!-- Header -->
+<header>
+
+  <nav class="navbar navbar-expand-lg " id="navbar-main">
+    <div class="container-fluid navbar-light ">
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-5">
+          <li class="nav-item dropdown">
+
+            <ng-template [ngIf]="!isRunningAlgo">
+              <a class="nav-link dropdown-toggle text-light" href="#"
+                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                style="font-family: 'Cinzel', serif;">
+                {{runConf.selectedAlgo}}
+              </a>
+            </ng-template>
+            <ng-template [ngIf]="isRunningAlgo">
+              <a class="nav-link dropdown-toggle text-light disabled" href="#"
+                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                style="font-family: 'Cinzel', serif;">
+                {{runConf.selectedAlgo}}
+              </a>
+            </ng-template>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" (click)="runConf.SelectAlgo('Bubble')"
+                  style="font-family: 'Roboto Slab', serif;">Bubble Sort
+                </a>
+              </li>
+              <li><a class="dropdown-item " (click)="runConf.SelectAlgo('Selection')"
+                  style="font-family: 'Roboto Slab', serif;">Selection Sort</a></li>
+              <li><a class="dropdown-item " (click)="runConf.SelectAlgo('Insersion')"
+                  style="font-family: 'Roboto Slab', serif;">Inserstion Sort</a></li>
+              <!-- <li><a class="dropdown-item" href="#"></a></li> -->
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item text-secondary disabled" (click)="runConf.SelectAlgo('Shell')"
+                  style="font-family: 'Roboto Slab', serif;">Shell Sort</a></li>
+              <li><a class="dropdown-item text-secondary disabled" (click)="runConf.SelectAlgo('Redux')"
+                  style="font-family: 'Roboto Slab', serif;">Redux Sort</a></li>
+              <li><a class="dropdown-item text-secondary disabled" (click)="runConf.SelectAlgo('Merge')"
+                  style="font-family: 'Roboto Slab', serif;">Merge Sort</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="container-fluid">
+          <div class="row justify-content-evenly">
+
+            <div class="col-md mx-2">
+              <div class="row range-border">
+                <div class=" col-1 me-0 mt-2 ">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="navBar-Icon" width="24" height="24" viewBox="0 0 24 24"
+                    style="transform: scaleX(-1);msFilter:progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);">
+                    <path
+                      d="M12 5c-4.411 0-8 3.589-8 8s3.589 8 8 8 8-3.589 8-8-3.589-8-8-8zm0 14c-3.309 0-6-2.691-6-6s2.691-6 6-6 6 2.691 6 6-2.691 6-6 6z">
+                    </path>
+                    <path d="M11 9h2v5h-2zM9 2h6v2H9zm10.293 5.707-2-2 1.414-1.414 2 2z"></path>
+                  </svg>
+                </div>
+                <div class="col-11 ms-0 ">
+                  <input type="range" class="form-range mt-2 mx-1" step="2" min="{{defaultConf.minDelay}}"
+                    max="{{defaultConf.maxDelay}}" id="customRange1" (ngModelChange)="setSpeed(speed.value)"
+                    #speed="ngModel" ngModel name="speed">
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-md mx-2 me-4 " >
+              <div class="row range-border">
+                <div class="col-1 me-0 mt-2" >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-bar-chart-fill navBar-Icon" viewBox="0 0 16 16">
+                    <path
+                      d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z" />
+                  </svg>
+                </div>
+                <div class="col-11 ms-0">
+                  <input type="range" [disabled]="isRunningAlgo" class="form-range mt-2 ms-1 me-3" step="2" min="6"
+                    max="150" id="customRange1" (ngModelChange)="setRandom(range.value)" #range="ngModel" ngModel
+                    name="range" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="d-flex w-50 ">
+          <button class="btn "[disabled]="isRunningAlgo" id="btn-start" type="submit" (click)="clickStart()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity"
+              viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z" />
+            </svg>
+
+            Start
+          </button>
+
+          <button class="btn mx-1 ms-2 " [disabled]="isRunningAlgo" type="submit" id="btn-shuffle"
+            (click)="setRandom(this.runConf.numberOfLines)">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shuffle"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z" />
+                <path
+                  d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z" />
+              </svg>
+              Shuffle
+            </div>
+
+          </button>
+
+          <button class="btn ms-1 " id="btn-stop" [disabled]="!isRunningAlgo" type="submit" (click)="runConf.onClickStop()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon"
+              viewBox="0 0 16 16">
+              <path
+                d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1H5.1z" />
+              <path
+                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+            Stop</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+<!-- Header-Ends -->
+
+
+<!-- Main -->
+<main class="background-change">
+
+  <div class="container mt-0 w-100 h-100 p-0">
+    <div class="row">
+      <div class="col p-0" id="line-body" *ngFor="let line of line;let i = index">
+        <div class="lines row border border-solid rounded-bottom m-0 w-auto" [style.height.px]="line.hight * 23"
+          [style.background-color]="line.color"></div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</main>
+<!-- Main Ends -->
+
+
+
+<!-- Model Ends -->
+
+
+<!-- Footer -->
+<footer class="background-change"></footer>
+<!-- Footer-Ends -->
+
+
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>

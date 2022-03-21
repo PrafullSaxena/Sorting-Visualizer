@@ -1,0 +1,114 @@
+
+#main-body{
+  background-color: #FFEDED;
+}
+
+#navbar-main{
+  /* background-color: #F1F4F3; */
+  background-color: #a598ff;
+}
+
+.algo-fonts{
+  /* font-family: 'Roboto Slab', serif; */
+  font-family: 'Cinzel', serif;
+}
+
+.tooltip-forRange::before,
+.tooltip-forRange::after{
+  --scale:0;
+  --tooltipcolor: #333;
+
+  position: absolute;
+  top: 2rem;
+  left: 58%;
+  transform: translateX(-50%) translateY(50%) scale(var(--scale));
+  transition: 150ms transform;
+  transform-origin: top center;
+}
+
+.tooltip-forRange::before{
+
+  content: attr(data-tooltip);
+  /* content: {{default_hight}}; */
+  color: white;
+  padding: .5rem;
+  border-radius: 1rem;
+  text-align: center;
+  width: max-content;
+  max-width: 100%;
+  background: var(--tooltipcolor);
+}
+
+.tooltip-forRange:hover::before,
+.tooltip-forRange:hover::after{
+  --scale:1;
+}
+
+/* .tooltip-forRange::after{
+  --translate-y: cals(-1 * var(--arrow-size))
+  content: '';
+  border: var(--arrow-size) solid transparent;
+  border-bottom-color: var(--tooltipcolor);
+} */
+
+#btn-start{
+  /* color: rgb(112, 8, 249); */
+  color: white;
+  border-width:1;
+  border-color: rgb(153, 255, 0);
+  background-color: #a598ff;
+  font-family: 'Roboto Slab', serif;
+}
+
+#btn-start:hover{
+  background-color: rgb(153, 255, 0);
+  border-color: rgb(254, 254, 254);
+  border-width:1;
+  color: #a598ff;
+}
+
+#btn-shuffle{
+  /* color: rgb(112, 8, 249); */
+  color: white;
+  border-width:1;
+  border-color: rgb(255, 255, 0);
+  background-color: #a598ff;
+  font-family: 'Roboto Slab', serif;
+
+}
+#btn-shuffle.svg:hover {
+  color: #a598ff;
+}
+
+#btn-shuffle:hover{
+  background-color: rgb(255, 255, 0);
+  color: #a598ff;
+
+}
+
+#btn-stop{
+  /* color:rgb(112, 8, 249); */
+  color: white;
+  border-width:1;
+  border-color:rgb(255, 0, 0);
+  background-color: #a598ff;
+  font-family: 'Roboto Slab', serif;
+}
+
+
+#btn-stop:hover{
+  background-color: rgb(255, 0, 0);
+
+}
+#btn-stop.svg:hover{
+  background-color: #a598ff;
+
+}
+
+
+.range-border:hover{
+  border: 1;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.31);
+}
+
