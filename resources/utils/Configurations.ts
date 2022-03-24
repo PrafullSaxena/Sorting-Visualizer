@@ -36,11 +36,17 @@ export class runConfig{
 export class defaultConfig{
 
   //Line Colors
-  public DEFAULT_LINE : string = "#a598ff"; //Light Purple
-  public LINE_ONE : string = "#FC2F00"; // Red
-  public LINE_TWO : string = "#FFFF00";  // Yellow
-  public SORTED_ARRAY : string = "rgba(141, 51, 255, 1)"; /// purple
-  public LAST_LINE : string =  "#00FF00"; //Green
+  // public DEFAULT_LINE : string = "#a598ff"; //Light Purple
+  // public LINE_ONE : string = "#FC2F00"; // Red
+  // public LINE_TWO : string = "#FFFF00";  // Yellow
+  // public SORTED_ARRAY : string = "rgba(141, 51, 255, 1)"; /// purple
+  // public LAST_LINE : string =  "#00FF00"; //Green
+
+  public DEFAULT_LINE : string = "#FF5F5D"; 
+  public LINE_ONE : string = "#3F7C85"; 
+  public LINE_TWO : string = "#72F2EB";  
+  public SORTED_ARRAY : string = "#00CCBF"; 
+  public LAST_LINE : string =  "#747E7E"; 
 
   //Number of Lines
   public minNumberOfLines : number = 6;
